@@ -45,6 +45,12 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 # gem "sassc-rails"
 
+# rest-client to interact with api
+gem 'rest-client'
+
+# dotenv to use env keys
+gem 'dotenv', '~> 2.1', '>= 2.1.1'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
