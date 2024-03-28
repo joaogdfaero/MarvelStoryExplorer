@@ -1,0 +1,24 @@
+<h1>Marvel Story Characters</h1>
+
+<% if story.nil? %>
+  <p>Story not found.</p>
+<% else %>
+  <h2>Title: <%= story["title"] || "N/A" %></h2>
+  <% description = story["description"].present? ? story["description"] : "N/A" %>
+  <p>Description: <%= description %></p>
+  <ul>
+    <p> Characters </p>
+    <% characters.each do |character| %>
+      <li>
+        <%= character["name"] %>
+        <% if character["thumbnail_url"].present? %>
+          <br>  <img src="<%= character["thumbnail_url"] +'/portrait_small.jpg'%>">
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if attributionText.present? %>
+  <p><%= attributionText %></p>
+<% end %>
