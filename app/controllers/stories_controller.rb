@@ -15,6 +15,7 @@ class StoriesController < ApplicationController
       else
         story = story_data["data"]["results"][0]
         attributionText = story_data["attributionText"]
+        render :show, locals: { characters: characters, story: story, attributionText: attributionText }
       end
     end
 end
