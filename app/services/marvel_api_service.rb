@@ -17,7 +17,7 @@ class MarvelApiService
 
   def fetch_story_details(story_id)
     url = "https://gateway.marvel.com/v1/public/stories/#{story_id}?apikey=#{@public_key}&hash=#{@hash}&ts=#{@ts}"
-    response = RestClient.get(url)
+    response = RestClient::Request.execute(:url => url, :method => :get, :verify_ssl => false)
     JSON.parse(response.body)
   end
 
@@ -29,7 +29,7 @@ class MarvelApiService
   end
 
   def enrich_character(character)
-    details = JSON.parse(RestClient.get("#{character["resourceURI"]}?apikey=#{@public_key}&hash=#{@hash}&ts=#{@ts}").body)
+    details = JSON.parse(RestClient::Request.execute(:url => "#{character["resourceURI"]}?apikey=#{@public_key}&hash=#{@hash}&ts=#{@ts}", :method => :get, :verify_ssl => false).body)
     character["name"] = details["data"]["results"][0]["name"]
     character["thumbnail_url"] = build_thumbnail_url(details["data"]["results"][0]["thumbnail"])
     character
