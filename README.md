@@ -34,6 +34,15 @@ Using the [Marvel API](http://developer.marvel.com/docs), this project picks a r
 * Ruby 3.1.4
 * Rails 7.0.8
 
+## Configuration
+
+You'll need an API key — get yours [here](http://developer.marvel.com). Create a .env file at the root of your project directory, then add your public and private keys to the .env file as following:
+
+```ruby
+PUBLIC_KEY = <your_public_key>
+PRIVATE_KEY = <your_private_key>
+```
+
 ## Installation
 1. **Clone this repository**  
 ` git clone https://github.com/joaogdfaero/MarvelStoryExplorer.git`
@@ -44,13 +53,10 @@ Using the [Marvel API](http://developer.marvel.com/docs), this project picks a r
 3. **Install the necessary gems**  
 ` bundle install`
 
-4. **Populate the database**  
-` rails db:seed`
-
-5. **Run the application server**  
+4. **Run the application server**  
 ` rails s `
 
-6. **The server will start on port: 3000 - access:**    
+5. **The server will start on port: 3000 - access:**    
 ` http://localhost:3000 `
 
 ##
