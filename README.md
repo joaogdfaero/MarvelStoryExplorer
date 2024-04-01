@@ -7,8 +7,8 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 <br />
 <div align="center">
-  <a href="https://github.com/joaogdfaero/MarvelStoryExplorer/">
-    <img src="MarvelStoryExplorerlogo.png" alt="Logo" width="220" height="220">
+  <a href="">
+    <img src="https://github.com/joaogdfaero/MarvelStoryExplorer/assets/103076610/939247c6-17e2-48bf-9ab7-f255004d95a9" alt="Logo" width="220" height="220">
   </a>
 <h3 align="center">Marvel Story Explorer</h3>
   <p align="center">
