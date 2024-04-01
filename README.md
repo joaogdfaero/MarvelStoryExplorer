@@ -12,7 +12,7 @@
   </a>
 <h3 align="center">Marvel Story Explorer</h3>
   <p align="center">
-    A website built with Ruby on Rails where drivers/truckers can register and post their routes, so that others (individuals or companies) can hire freight transport services. It is also possible for someone to request a freight and other drivers can offer it.
+    A Ruby on Rails app to retrieve and show data from the Marvel API.
      <br />
     <br />
     <br />
@@ -20,21 +20,16 @@
 </div>
 
 ## Project Requirements :ballot_box_with_check:
-● User registration and login;
-
-● User can create a freight that is automatically associated with him;
-
-● User can request freights created by other users;
-
-● Freight owner can accept or reject requests from other users;
-
-● User can view the trips created by himself in a "My Trips" menu.
+Using the Marvel API [http://developer.marvel.com/docs], this project picks a random story featuring and generate an HTML page with the following characteristics:
+●  The story's description
+●  A list of names and pictures of the characters that feature in the story
+●  The Marvel attribution text
 
 ## Demo 📺
 
 ## Technologies
 * Ruby 3.1.4
-* Rails 7.0.4
+* Rails 7.0.8
 
 ## Installation
 1. **Clone this repository**  
