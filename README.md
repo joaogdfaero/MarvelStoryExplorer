@@ -28,8 +28,6 @@ Using the [Marvel API](http://developer.marvel.com/docs), this project picks a r
 
 ●  The Marvel attribution text
 
-## Demo 📺
-
 ## Technologies
 * Ruby 3.1.4
 * Rails 7.0.8
