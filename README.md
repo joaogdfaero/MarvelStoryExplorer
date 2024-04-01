@@ -69,7 +69,7 @@ PRIVATE_KEY = <your_private_key>
 [forks-shield]: https://img.shields.io/github/forks/joaogdfaero/MarvelStoryExplorer.svg?style=for-the-badge
 [forks-url]: https://github.com/joaogdfaero/MarvelStoryExplorer/network/members
 [stars-shield]: https://img.shields.io/github/stars/joaogdfaero/MarvelStoryExplorer.svg?style=for-the-badge
-[stars-url]: https://github.com/joaogdfaero/guitar_store/stargazers
+[stars-url]: https://github.com/joaogdfaero/MarvelStoryExplorer/stargazers
 [issues-shield]: https://img.shields.io/github/issues/joaogdfaero/MarvelStoryExplorer.svg?style=for-the-badge
 [issues-url]: https://github.com/joaogdfaero/MarvelStoryExplorer/issues
 [license-shield]: https://img.shields.io/github/license/joaogdfaero/MarvelStoryExplorer.svg?style=for-the-badge
