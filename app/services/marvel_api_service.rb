@@ -13,29 +13,23 @@ class MarvelApiService
   
     def fetch_characters(story_id)
       data = fetch_story_details(story_id)
-      if data["data"]["results"][0]["characters"]["returned"] > 0
-        data["data"]["results"][0]["characters"]["items"].map do |character|
-          character["name"] = get_character_details(character["resourceURI"])["name"]
-          character["thumbnail_url"] = get_character_details(character["resourceURI"])["thumbnail"]["path"]
-          character
-        end
-      else
-        []
+      characters = data["data"]["results"][0]["characters"]["items"] || []
+      characters.map do |character|
+        enrich_character(character)
       end
     end
-  
+
     private
   
-    def get_character_details(resource_uri)
-      url = "#{resource_uri}?apikey=#{@public_key}&hash=#{@hash}&ts=#{@ts}"
-      response = RestClient.get(url)
-      data = JSON.parse(response.body)
-      character = data["data"]["results"][0]
-    
-      thumbnail_path = character["thumbnail"]["path"]
-      thumbnail_extension = character["thumbnail"]["extension"]
-    
-      character["thumbnail_url"] = "#{thumbnail_path}/portrait_small.#{thumbnail_extension}"
+    def enrich_character(character)
+      details = JSON.parse(RestClient.get("#{character["resourceURI"]}?apikey=#{@public_key}&hash=#{@hash}&ts=#{@ts}").body)
+      character["name"] = details["data"]["results"][0]["name"]
+      character["thumbnail_url"] = build_thumbnail_url(details["data"]["results"][0]["thumbnail"])
       character
     end
-end
+  
+    def build_thumbnail_url(thumbnail_data)
+      "#{thumbnail_data['path']}/portrait_small.#{thumbnail_data['extension']}"
+    end
+  end
+  
