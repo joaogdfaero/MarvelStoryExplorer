@@ -20,7 +20,7 @@
 </div>
 
 ## Project Requirements :ballot_box_with_check:
-Using the Marvel API [http://developer.marvel.com/docs], this project picks a random story featuring and generate an HTML page with the following characteristics:
+Using the (Marvel API)[http://developer.marvel.com/docs], this project picks a random story featuring and generate an HTML page with the following characteristics:
 
 ●  The story's title and description
 
