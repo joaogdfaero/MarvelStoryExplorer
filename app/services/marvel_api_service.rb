@@ -1,41 +1,42 @@
 class MarvelApiService
-    def initialize(public_key:, hash:, ts:)
-      @public_key = public_key
-      @hash = hash
-      @ts = ts
+  attr_reader :story_data, :characters, :attributionText
+
+  def initialize(public_key:, hash:, ts:)
+    @public_key = public_key
+    @hash = hash
+    @ts = ts
+  end
+
+  def fetch_data(story_id)
+    @story_data = fetch_story_details(story_id)
+    @characters = fetch_characters(story_id)
+    @attributionText = @story_data["attributionText"]
+  end
+
+  private
+
+  def fetch_story_details(story_id)
+    url = "https://gateway.marvel.com/v1/public/stories/#{story_id}?apikey=#{@public_key}&hash=#{@hash}&ts=#{@ts}"
+    response = RestClient::Request.execute(:url => url, :method => :get, :verify_ssl => false)
+    JSON.parse(response.body)
+  end
+
+  def fetch_characters(story_id)
+    characters_data = @story_data["data"]["results"][0]["characters"]["items"] || []
+    characters_data.map do |character|
+      enrich_character(character)
     end
-  
-    def fetch_story_details(story_id)
-      url = "https://gateway.marvel.com/v1/public/stories/#{story_id}?apikey=#{@public_key}&hash=#{@hash}&ts=#{@ts}"
-      response = RestClient.get(url)
-      JSON.parse(response.body)
-    end
-  
-    def fetch_characters(story_id)
-      data = fetch_story_details(story_id)
-      if data["data"]["results"][0]["characters"]["returned"] > 0
-        data["data"]["results"][0]["characters"]["items"].map do |character|
-          character["name"] = get_character_details(character["resourceURI"])["name"]
-          character["thumbnail_url"] = get_character_details(character["resourceURI"])["thumbnail"]["path"]
-          character
-        end
-      else
-        []
-      end
-    end
-  
-    private
-  
-    def get_character_details(resource_uri)
-      url = "#{resource_uri}?apikey=#{@public_key}&hash=#{@hash}&ts=#{@ts}"
-      response = RestClient.get(url)
-      data = JSON.parse(response.body)
-      character = data["data"]["results"][0]
-    
-      thumbnail_path = character["thumbnail"]["path"]
-      thumbnail_extension = character["thumbnail"]["extension"]
-    
-      character["thumbnail_url"] = "#{thumbnail_path}/portrait_small.#{thumbnail_extension}"
-      character
-    end
+  end
+
+  def enrich_character(character)
+    details = JSON.parse(RestClient::Request.execute(:url => "#{character["resourceURI"]}?apikey=#{@public_key}&hash=#{@hash}&ts=#{@ts}", :method => :get, :verify_ssl => false).body)
+    character["name"] = details["data"]["results"][0]["name"]
+    character["thumbnail_url"] = build_thumbnail_url(details["data"]["results"][0]["thumbnail"])
+    character
+  end
+
+  def build_thumbnail_url(thumbnail_data)
+    "#{thumbnail_data['path']}/portrait_small.#{thumbnail_data['extension']}"
+  end
 end
+  
